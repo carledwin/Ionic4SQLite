@@ -1,0 +1,10 @@
+
+sudo npm install ionic@latest
+ionic start Ionic541SQLite blank
+cd Ionic541SQLite/
+ionic cordova plugin add cordova-sqlite-storage
+sudo npm install @ionic-native/sqlite
+code .
+ionic serve
+ionic cordova platform add android
+ionic cordova build android
