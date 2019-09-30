@@ -56,7 +56,7 @@ storePassword=Uma_senha
 ''''
 
 cd ../../
-ionic build android --release
+ionic build android --release ou ionic build android --prod --release ou ionic cordova build android --release 
 ionic cordova build android
 
 Quando precisar de certificado
