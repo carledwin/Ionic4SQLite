@@ -8,3 +8,53 @@ code .
 ionic serve
 ionic cordova platform add android
 ionic cordova build android
+
+
+-------------------------------
+ionic start Ionic541SQLiteCertificate blank
+cd Ionic541SQLiteCertificate/
+ionic serve
+ionic cordova platform add android
+cd platforms/android/
+keytool -genkey -v -keystore Ionic541SQLiteCertificate.keystore -alias Ionic541SQLiteCertificate -keyalg RSA -keysize 2048 -validity 10000
+''''
+Informe a senha da ▒rea de armazenamento de chaves:  Uma_senha
+Informe novamente a nova senha: Uma_senha
+Qual ▒ o seu nome e o seu sobrenome?
+  [Unknown]:  Carl Edwin
+Qual ▒ o nome da sua unidade organizacional?
+  [Unknown]:  Minha unidade organizacional
+Qual ▒ o nome da sua empresa?
+  [Unknown]:  Carl Edwin TI
+Qual ▒ o nome da sua Cidade ou Localidade?
+  [Unknown]:  Osasco
+Qual ▒ o nome do seu Estado ou Munic▒pio?
+  [Unknown]:  Sao Paulo
+Quais s▒o as duas letras do c▒digo do pa▒s desta unidade?
+  [Unknown]:  BR
+CN=Carl Edwin, OU=Minha unidade organizacional, O=Carl Edwin TI, L=Osasco, ST=Sao Paulo, C=BR Est▒ correto?
+  [n▒o]:  sim
+
+Gerando o par de chaves RSA de 2.048 bit e o certificado autoassinado (SHA256withRSA) com uma validade de 10.000 dias
+        para: CN=Carl Edwin, OU=Minha unidade organizacional, O=Carl Edwin TI, L=Osasco, ST=Sao Paulo, C=BR
+Informar a senha da chave de <Ionic541SQLiteCertificate>
+        (RETURN se for igual ▒ senha da ▒rea do armazenamento de chaves):  Uma_senha
+Informe novamente a nova senha: @rro$10
+
+
+''''
+mv Ionic541SQLiteCertificate.keystore Ionic541SQLiteCertificate.jks
+
+criar um arquivo 'release-signing.properties' dentro de Ionic541SQLiteCertificate/platforms/android
+''''
+storeFile=Ionic541SQLiteCertificate.jks
+storeType=jks
+keyAlias=Ionic541SQLiteCertificate
+// Se você não deseja inserir a senha em cada compilação, use isso:
+keyPassword=Uma_senha
+storePassword=Uma_senha
+''''
+
+cd ../../
+ionic build android --release
+ionic cordova build android
