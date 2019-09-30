@@ -58,3 +58,7 @@ storePassword=Uma_senha
 cd ../../
 ionic build android --release
 ionic cordova build android
+
+Quando precisar de certificado
+"%JAVA_HOME%/jre/bin/keytool" -keystore "%JAVA_HOME%/jre/lib/security/cacerts" -importcert -alias MyCertificate -file "cert.cer"
+A senha padrão é changeit
