@@ -62,3 +62,48 @@ ionic cordova build android
 Quando precisar de certificado
 "%JAVA_HOME%/jre/bin/keytool" -keystore "%JAVA_HOME%/jre/lib/security/cacerts" -importcert -alias MyCertificate -file "cert.cer"
 A senha padrão é changeit
+
+
+***********************************************************************************
+
+Linux
+
+sudo npm install ionic@latest
+
+ionic start Ionic5SQLite blank 
+
+cd Ionic5SQLite
+
+ionic serve --lab
+
+Adicione a plataforma android ao projeto
+ionic cordova platform add android
+
+Crie o keystore
+keytool -genkey -v -keystore Ionic541SQLiteCertificate.keystore -alias Ionic541SQLiteCertificate -keyalg RSA -keysize 2048 -validity 10000
+
+Em 'platforms/android/'
+Ionic541SQLiteCertificate.keystore copie, cole e renomeie a copia para Ionic541SQLiteCertificate.jks
+
+crie o arquivo 'platforms/android/release-signing.properties'
+"""""
+storeFile=Ionic541SQLiteCertificate.jks
+storeType=jks
+keyAlias=Ionic541SQLiteCertificate
+// Se você não deseja inserir a senha em cada compilação, use isso:
+keyPassword=XXXXXX
+storePassword=XXXXXX
+""""
+
+altere o arquivo config.xml
+""""
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.wordpress.carledwinti" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Ionic5SQLite</name>
+    <description>Ionic/Cordova app 5 SQLite.</description>
+    <author email="seuemail@mail.com" href="https://carledwinti.wordpress.com/">Carl Edwin TI Team</author>
+    <content src="index.html" />
+....
+"""
+
+ionic cordova build android --release
